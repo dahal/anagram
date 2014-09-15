@@ -1,3 +1,4 @@
+require "awesome_print"
 class Anagrams
 
   # Collect dictionary words from OSX /usr/share/dict/words 
@@ -16,12 +17,12 @@ class Anagrams
       anagrams[word] ||=[]
       anagrams[word] << word 
     end
-    # Get just the values
-    anagrams.values
+    # Get just the one with two or more anagrams
+    anagrams.select!{ |key, value| value.count >= 2 }
   end
 
 end
 
 anagram = Anagrams.new
 anagram.collect_words
-p anagram.collect!
+ap anagram.collect!
